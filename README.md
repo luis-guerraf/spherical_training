@@ -1,0 +1,1 @@
+Training binary networks on a sphere

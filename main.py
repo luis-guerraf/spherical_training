@@ -44,11 +44,11 @@ parser.add_argument('-b', '--batch-size', default=256, type=int,
                     help='mini-batch size (default: 256), this is the total '
                          'batch size of all GPUs on the current node when '
                          'using Data Parallel or Distributed Data Parallel')
-parser.add_argument('--lr', '--learning-rate', default=1e-3, type=float,
+parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
-parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
+parser.add_argument('--momentum', default=0, type=float, metavar='M',
                     help='momentum')
-parser.add_argument('--wd', '--weight-decay', default=1e-6, type=float,
+parser.add_argument('--wd', '--weight-decay', default=0, type=float,
                     metavar='W', help='weight decay (default: 1e-4)',
                     dest='weight_decay')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
@@ -181,8 +181,6 @@ def main_worker(gpu, ngpus_per_node, args):
     # SGD (lr=0.1, wd=1e-4) is better for real networks
     optimizer = torch.optim.SGD(model.parameters(), args.lr,
                                 momentum=args.momentum, weight_decay=args.weight_decay)
-    # Adam (lr=1e-3, wd=1e-6) is better for quantized networks  (except with APSQ)
-    # optimizer = torch.optim.Adam(model.parameters(), args.lr, weight_decay=args.weight_decay)
 
     # optionally resume from a checkpoint
     if args.resume:

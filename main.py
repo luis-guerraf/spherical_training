@@ -173,7 +173,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
     # Init sphere
     if args.retract:
-        map(init_retract, layers_list(model.module))
+        map(init_sphere, layers_list(model.module))
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
@@ -477,7 +477,7 @@ def retract(layer, temp_layer):
     return
 
 
-def init_retract(layer):
+def init_sphere(layer):
     # layer.weight.data = layer.weight.data.sign()
     norm = torch.norm(layer.weight, p='fro')
     layer.weight.data = layer.weight.data/norm

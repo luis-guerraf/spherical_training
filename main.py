@@ -78,6 +78,8 @@ parser.add_argument('--project', action='store_true',
                     help='Project gradients onto tangent space')
 parser.add_argument('--retract', action='store_true',
                     help='Retract weights back onto sphere')
+parser.add_argument('--use-mhe', action='store_true',
+                    help='Project gradients onto tangent space')
 
 best_acc1 = 0
 
@@ -173,7 +175,7 @@ def main_worker(gpu, ngpus_per_node, args):
 
     # Init sphere
     if args.retract:
-        map(init_sphere, layers_list(model.module))
+        list(map(init_sphere, layers_list(model.module)))
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
@@ -200,9 +202,9 @@ def main_worker(gpu, ngpus_per_node, args):
 
     # Data loading code
     if args.dataset == 'imagenet':
-        datafolder = '../../Datasets/IMAGENET/ImageNet_smallSize256/'
+        datafolder = '/data/Datasets/IMAGENET/ImageNet_smallSize256/'
     elif args.dataset == 'tiny_imagenet':
-        datafolder = '../../Datasets/IMAGENET/tiny-imagenet-200/'
+        datafolder = '/data/Datasets/IMAGENET/tiny-imagenet-200/'
 
     traindir = os.path.join(datafolder, 'train')
     valdir = os.path.join(datafolder, 'val')
@@ -298,6 +300,11 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         CE_loss = criterion(output, target)
         loss = CE_loss
 
+        if args.use_mhe:
+            mhe_loss = list(map(compute_mhe_loss, layers))
+            mhe_loss = sum(mhe_loss)/len(mhe_loss)
+            loss = loss + mhe_loss
+
         # measure accuracy and record loss
         acc1, acc5 = accuracy(output, target, topk=(1, 5))
         CE_losses.update(CE_loss.item(), input.size(0))
@@ -311,7 +318,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         # Project gradient onto tangent hyperplane
         if args.project:
-            map(project_onto_tangent, layers)
+            list(map(project_onto_tangent, layers))
 
         # Store current x needed for retraction
         if args.retract:
@@ -321,13 +328,13 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         # Retraction onto sphere space
         if args.retract:
-            map(retract, layers, temp_layers)
+            list(map(retract, layers, temp_layers))
 
         # measure elapsed time
         batch_time.update(time.time() - end)
         end = time.time()
 
-    nn_norm = map(layer_norm, layers)
+    nn_norm = list(map(layer_norm, layers))
     nn_norm = sum(nn_norm) / len(nn_norm)
 
     print('Epoch: [{0}]\t'
@@ -475,6 +482,27 @@ def retract(layer, temp_layer):
 
     layer.weight.data = R
     return
+
+
+def compute_mhe_loss(layer):
+    use_halfMHE = True
+
+    filt = layer.weight
+    output_dim = filt.shape[0]
+    eps = 1e-4
+    filt = filt.view(-1, output_dim)
+    if use_halfMHE:
+        filt = torch.cat([filt, -filt], dim=0)
+    filt_norm = torch.sqrt(torch.sum(filt * filt, dim=0, keepdim=True) + eps)
+    filt = filt/filt_norm
+    inner_pro = torch.matmul(torch.transpose(filt, 0, 1), filt)
+    cross_terms = 2.0 - 2.0 * inner_pro
+
+    # keep upper triangular part of cross term matrix
+    cross_terms = torch.triu(cross_terms, diagonal=0) * (1.0 - torch.eye(output_dim).cuda())
+    loss = -1e-6 * torch.mean(torch.log(cross_terms + eps))
+
+    return loss
 
 
 def init_sphere(layer):

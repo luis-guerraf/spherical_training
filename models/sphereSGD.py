@@ -1,7 +1,7 @@
 import torch
 from torch.optim.optimizer import Optimizer, required
 
-class shpereSGD(Optimizer):
+class sphereSGD(Optimizer):
     r"""Implements stochastic gradient descent (optionally with momentum).
 
     Nesterov momentum is based on the formula from
@@ -60,10 +60,10 @@ class shpereSGD(Optimizer):
                         weight_decay=weight_decay, nesterov=nesterov)
         if nesterov and (momentum <= 0 or dampening != 0):
             raise ValueError("Nesterov momentum requires a momentum and zero dampening")
-        super(SGD, self).__init__(params, defaults)
+        super(sphereSGD, self).__init__(params, defaults)
 
     def __setstate__(self, state):
-        super(SGD, self).__setstate__(state)
+        super(sphereSGD, self).__setstate__(state)
         for group in self.param_groups:
             group.setdefault('nesterov', False)
 
@@ -123,8 +123,6 @@ def project_onto_tangent_channelwise(p, d_p):
     d_p.data = P_grad.view(d_p.shape)
     return
 
-# Efficient way avoiding HUGE square matrices by using correct matrix multiplication associativity
-# Eps - x(x^t * Eps) <- (I - xx)Eps
 def project_onto_tangent_layerwise(p, d_p):
     # x = layer.weight.data.sign().view(-1)
     x = p.data.view(-1)
@@ -132,5 +130,5 @@ def project_onto_tangent_layerwise(p, d_p):
 
     P_grad = grad - x*(torch.dot(x, grad))
 
-    d_pdata = P_grad.view(d_p.shape)
+    d_p.data = P_grad.view(d_p.shape)
     return

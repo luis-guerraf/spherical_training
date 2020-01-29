@@ -181,8 +181,8 @@ def main_worker(gpu, ngpus_per_node, args):
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
     # SGD (lr=0.1, wd=1e-4) is better for real networks
-    optimizer = models.sphereSGD(model.parameters(), args.lr,
-                                momentum=args.momentum, weight_decay=args.weight_decay)
+    optimizer = models.sphereAdam(model.parameters(), args.lr,
+                                weight_decay=args.weight_decay)
 
     # optionally resume from a checkpoint
     if args.resume:
@@ -315,10 +315,6 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         # compute gradient and do SGD step
         optimizer.zero_grad()
         loss.backward()
-
-        # Project gradient onto tangent hyperplane
-        # if args.project:
-        #     list(map(project_onto_tangent_layerwise, layers))
 
         # Store current x needed for retraction
         if args.retract:

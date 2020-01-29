@@ -46,7 +46,7 @@ class sphereAdam(Optimizer):
         for group in self.param_groups:
             group.setdefault('amsgrad', False)
 
-    def step(self, project_onto_tangent, closure=None):
+    def step(self, project_onto_tangent, projection_mode, closure=None):
         """Performs a single optimization step.
 
         Arguments:
@@ -108,14 +108,17 @@ class sphereAdam(Optimizer):
                 d_p = exp_avg/denom
                 # If conv layer
                 if len(p.data.shape) == 4 and project_onto_tangent:
-                    project_onto_tangent_layerwise(p, d_p)
+                    if projection_mode == 'channelwise':
+                        project_onto_tangent_channelwise(p, d_p)
+                    elif projection_mode == 'layerwise':
+                        project_onto_tangent_layerwise(p, d_p)
 
                 p.data.add_(-step_size, d_p)
 
         return loss
 
+
 def project_onto_tangent_channelwise(p, d_p):
-    # x = layer.data.sign().view(-1)
     x = p.data.view(p.shape[0], -1)
     grad = d_p.data.view(d_p.shape[0], -1)
 
@@ -126,8 +129,8 @@ def project_onto_tangent_channelwise(p, d_p):
     d_p.data = P_grad.view(d_p.shape)
     return
 
+
 def project_onto_tangent_layerwise(p, d_p):
-    # x = layer.weight.data.sign().view(-1)
     x = p.data.view(-1)
     grad = d_p.data.view(-1)
 

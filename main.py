@@ -328,13 +328,13 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         # Retraction onto sphere space
         if args.retract:
-            list(map(retract, layers, temp_layers))
+            list(map(retract_layerwise, layers, temp_layers))
 
         # measure elapsed time
         batch_time.update(time.time() - end)
         end = time.time()
 
-    nn_norm = list(map(layer_norm, layers))
+    nn_norm = list(map(layer_norm_layerwise, layers))
     nn_norm = sum(nn_norm) / len(nn_norm)
 
     print('Epoch: [{0}]\t'
@@ -456,7 +456,22 @@ def layers_list(layer):
 
 # Efficient way avoiding HUGE square matrices by using correct matrix multiplication associativity
 # Eps - x(x^t * Eps) <- (I - xx)Eps
-def project_onto_tangent(layer):
+def project_onto_tangent_channelwise(layer):
+    # x = layer.weight.data.sign().view(-1)
+    x = layer.weight.data.view(layer.weight.shape[0], -1)
+    grad = layer.weight.grad.data.view(layer.weight.grad.shape[0], -1)
+
+    dot_products = torch.bmm(x.unsqueeze(1), grad.unsqueeze(2))
+    dot_products.squeeze_(-1)
+    P_grad = grad - x*(dot_products)
+
+    layer.weight.grad.data = P_grad.view(layer.weight.grad.shape)
+    return
+
+
+# Efficient way avoiding HUGE square matrices by using correct matrix multiplication associativity
+# Eps - x(x^t * Eps) <- (I - xx)Eps
+def project_onto_tangent_layerwise(layer):
     # x = layer.weight.data.sign().view(-1)
     x = layer.weight.data.view(-1)
     grad = layer.weight.grad.data.view(-1)
@@ -467,7 +482,24 @@ def project_onto_tangent(layer):
     return
 
 
-def retract(layer, temp_layer):
+def retract_channelwise(layer, temp_layer):
+    new_x = layer.weight.data.view(layer.weight.shape[0], -1)           # Notice: Use real weights
+    old_x = temp_layer.weight.data.view(temp_layer.weight.shape[0], -1)
+    delta = new_x - old_x
+
+    # Normalization
+    norm = torch.norm(new_x, p=2, dim=1)
+    R = new_x/norm.unsqueeze(-1)
+
+    # Exponential mapping
+    # delta_norm = torch.norm(delta, p=2, dim=1, keepdim=True)
+    # R = old_x*torch.cos(delta_norm) + (delta/delta_norm)*torch.sin(delta_norm)
+
+    layer.weight.data = R.view(layer.weight.shape)
+    return
+
+
+def retract_layerwise(layer, temp_layer):
     new_x = layer.weight.data           # Notice: Use real weights
     old_x = temp_layer.weight.data
     delta = new_x - old_x
@@ -505,14 +537,26 @@ def compute_mhe_loss(layer):
     return loss
 
 
-def init_sphere(layer):
+def init_sphere_channelwise(layer):
+    l = layer.weight.view(layer.weight.shape[0], -1)
+    norm = torch.norm(l, p=2, dim=1)
+    layer.weight.data /= norm.unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+    return
+
+
+def init_sphere_layerwise(layer):
     # layer.weight.data = layer.weight.data.sign()
     norm = torch.norm(layer.weight, p='fro')
     layer.weight.data = layer.weight.data/norm
     return
 
 
-def layer_norm(layer):
+def layer_norm_channelwise(layer):
+    l = layer.weight.view(layer.weight.shape[0], -1)
+    return torch.mean(torch.norm(l, p=2, dim=1))
+
+
+def layer_norm_layerwise(layer):
     return torch.norm(layer.weight, p='fro')
 
 

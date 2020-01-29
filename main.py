@@ -175,13 +175,13 @@ def main_worker(gpu, ngpus_per_node, args):
 
     # Init sphere
     if args.retract:
-        list(map(init_sphere, layers_list(model.module)))
+        list(map(init_sphere_layerwise, layers_list(model.module)))
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
     # SGD (lr=0.1, wd=1e-4) is better for real networks
-    optimizer = torch.optim.SGD(model.parameters(), args.lr,
+    optimizer = models.sphereSGD(model.parameters(), args.lr,
                                 momentum=args.momentum, weight_decay=args.weight_decay)
 
     # optionally resume from a checkpoint
@@ -317,14 +317,14 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         loss.backward()
 
         # Project gradient onto tangent hyperplane
-        if args.project:
-            list(map(project_onto_tangent, layers))
+        # if args.project:
+        #     list(map(project_onto_tangent_layerwise, layers))
 
         # Store current x needed for retraction
         if args.retract:
             temp_layers = copy.deepcopy(layers)
 
-        optimizer.step()
+        optimizer.step(project_onto_tangent=args.project)
 
         # Retraction onto sphere space
         if args.retract:

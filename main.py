@@ -187,7 +187,9 @@ def main_worker(gpu, ngpus_per_node, args):
     criterion = nn.CrossEntropyLoss().cuda(args.gpu)
 
     # SGD (lr=0.1, wd=1e-4) is better for real networks
-    optimizer = models.sphereAdam(model.parameters(), args.lr,
+    # optimizer = models.sphereAdam(model.parameters(), args.lr,
+    #                             weight_decay=args.weight_decay)
+    optimizer = models.sphereSGD(model.parameters(), args.lr, args.momentum,
                                 weight_decay=args.weight_decay)
 
     # optionally resume from a checkpoint
@@ -336,6 +338,13 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         batch_time.update(time.time() - end)
         end = time.time()
 
+        if i == 0:
+            # Compute layer-wise condition number
+            output = model(input)
+            nn_cond = [layer_cond(output, l) for l in layers[2:3]]
+            nn_cond = sum(nn_cond) / len(nn_cond)
+
+    # Network norm
     nn_norm = list(map(layer_norm, layers))
     nn_norm = sum(nn_norm) / len(nn_norm)
 
@@ -344,10 +353,11 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
           'Loss {loss.avg:.4f}\t'
           'Acc@1 {top1.avg:.3f}\t'
           'lr {lr:0.1e}\t'
-          'norm {norm:0.2f}'.format(
+          'norm {norm:0.2f}\t'
+          'cond {cond:0.1f}'.format(
            epoch, batch_time=batch_time,
            loss=CE_losses, top1=top1,
-           lr=optimizer.param_groups[0]['lr'], norm=nn_norm))
+           lr=optimizer.param_groups[0]['lr'], norm=nn_norm, cond=math.log2(nn_cond)))
 
 
 def validate(val_loader, model, criterion, args):
@@ -529,6 +539,34 @@ def layer_norm(layer):
     elif args.mode == 'layerwise':
         norm = torch.norm(layer.weight, p='fro')
     return norm
+
+
+def layer_cond(output, layer):
+    # Compute the conditioning number
+    w = layer.weight
+    dout2dw = torch.Tensor().cuda()
+    for i in range(output.shape[1]):
+        batch_mean = torch.mean(output[:, i], dim=0)
+
+        grad = torch.autograd.grad(batch_mean, w, retain_graph=True)
+        w.grad = None
+
+        grad = grad[0].detach()
+        grad = grad.view(grad.shape[0], -1)
+        dout2dw = torch.cat((dout2dw, grad.unsqueeze(0)), 0)
+
+    H0 = torch.bmm(dout2dw.permute(1, 2, 0), dout2dw.permute(1, 0, 2))
+    eigenVals = []
+    for j in range(H0.shape[0]):
+        vals, _ = torch.eig(H0[j])       # Dispose eigenvectors
+        real = vals[:, 0]                # Get real part of eigenvals
+        eigenVals.append(real)
+
+    eigenVals_std = torch.Tensor([torch.std(j) for j in eigenVals])
+    eigenVals_mean = torch.Tensor([torch.mean(j) for j in eigenVals])
+    cond = torch.mean(eigenVals_std / ((eigenVals_mean+1e-6) ** 2))
+
+    return cond
 
 
 if __name__ == '__main__':

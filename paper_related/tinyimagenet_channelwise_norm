@@ -1,0 +1,228 @@
+Epoch: [0]	Time 0.225	Loss 4.7003	Acc@1 5.726	lr 1.0e-01	norm 1.00	cond 12.4	13.3	15.6	
+Test:		Time 0.056	Loss 4.4099	Acc@1 8.510	
+Best accuracy: 8.510
+Epoch: [1]	Time 0.230	Loss 4.1323	Acc@1 12.153	lr 1.0e-01	norm 1.00	cond 17.3	14.9	15.3	
+Test:		Time 0.050	Loss 4.0059	Acc@1 13.840	
+Best accuracy: 13.840
+Epoch: [2]	Time 0.234	Loss 3.8206	Acc@1 16.825	lr 1.0e-01	norm 1.00	cond 17.3	14.7	15.4	
+Test:		Time 0.051	Loss 3.7448	Acc@1 17.410	
+Best accuracy: 17.410
+Epoch: [3]	Time 0.235	Loss 3.5707	Acc@1 20.961	lr 1.0e-01	norm 1.00	cond 17.4	14.6	15.4	
+Test:		Time 0.052	Loss 3.3722	Acc@1 23.670	
+Best accuracy: 23.670
+Epoch: [4]	Time 0.235	Loss 3.3976	Acc@1 24.013	lr 1.0e-01	norm 1.00	cond 17.4	14.4	15.5	
+Test:		Time 0.051	Loss 3.1470	Acc@1 27.720	
+Best accuracy: 27.720
+Epoch: [5]	Time 0.239	Loss 3.2287	Acc@1 27.061	lr 1.0e-01	norm 1.00	cond 17.1	14.3	15.5	
+Test:		Time 0.051	Loss 3.1649	Acc@1 27.850	
+Best accuracy: 27.850
+Epoch: [6]	Time 0.240	Loss 3.1089	Acc@1 29.054	lr 1.0e-01	norm 1.00	cond 17.2	14.1	15.5	
+Test:		Time 0.051	Loss 2.8975	Acc@1 31.960	
+Best accuracy: 31.960
+Epoch: [7]	Time 0.237	Loss 3.0035	Acc@1 31.142	lr 1.0e-01	norm 1.00	cond 17.4	14.3	15.5	
+Test:		Time 0.050	Loss 2.8888	Acc@1 33.140	
+Best accuracy: 33.140
+Epoch: [8]	Time 0.239	Loss 2.9058	Acc@1 32.857	lr 1.0e-01	norm 1.00	cond 17.2	14.2	15.4	
+Test:		Time 0.052	Loss 2.7875	Acc@1 34.600	
+Best accuracy: 34.600
+Epoch: [9]	Time 0.241	Loss 2.8271	Acc@1 34.588	lr 1.0e-01	norm 1.00	cond 17.2	14.1	15.5	
+Test:		Time 0.052	Loss 2.7665	Acc@1 35.480	
+Best accuracy: 35.480
+Epoch: [10]	Time 0.243	Loss 2.7617	Acc@1 35.696	lr 1.0e-01	norm 1.00	cond 17.1	14.2	15.6	
+Test:		Time 0.052	Loss 3.2333	Acc@1 29.030	
+Epoch: [11]	Time 0.239	Loss 2.6922	Acc@1 37.065	lr 1.0e-01	norm 1.00	cond 17.3	14.2	15.4	
+Test:		Time 0.052	Loss 2.5970	Acc@1 38.510	
+Best accuracy: 38.510
+Epoch: [12]	Time 0.242	Loss 2.6445	Acc@1 38.045	lr 1.0e-01	norm 1.00	cond 17.3	14.2	15.4	
+Test:		Time 0.049	Loss 2.5964	Acc@1 38.760	
+Best accuracy: 38.760
+Epoch: [13]	Time 0.238	Loss 2.5901	Acc@1 39.137	lr 1.0e-01	norm 1.00	cond 17.3	14.2	15.5	
+Test:		Time 0.052	Loss 2.6071	Acc@1 39.760	
+Best accuracy: 39.760
+Epoch: [14]	Time 0.238	Loss 2.5413	Acc@1 40.087	lr 1.0e-01	norm 1.00	cond 17.2	14.1	15.5	
+Test:		Time 0.052	Loss 2.6257	Acc@1 39.510	
+Epoch: [15]	Time 0.241	Loss 2.5056	Acc@1 40.733	lr 1.0e-01	norm 1.00	cond 17.0	14.0	15.5	
+Test:		Time 0.052	Loss 2.6746	Acc@1 38.480	
+Epoch: [16]	Time 0.240	Loss 2.4707	Acc@1 41.521	lr 1.0e-01	norm 1.00	cond 17.1	14.0	15.5	
+Test:		Time 0.052	Loss 2.6479	Acc@1 39.060	
+Epoch: [17]	Time 0.244	Loss 2.4416	Acc@1 42.047	lr 1.0e-01	norm 1.00	cond 17.1	14.1	15.5	
+Test:		Time 0.053	Loss 2.4965	Acc@1 41.570	
+Best accuracy: 41.570
+Epoch: [18]	Time 0.241	Loss 2.4160	Acc@1 42.496	lr 1.0e-01	norm 1.00	cond 16.9	14.0	15.4	
+Test:		Time 0.052	Loss 2.5513	Acc@1 40.510	
+Epoch: [19]	Time 0.243	Loss 2.3874	Acc@1 43.344	lr 1.0e-01	norm 1.00	cond 16.9	13.9	15.4	
+Test:		Time 0.051	Loss 2.6780	Acc@1 38.970	
+Epoch: [20]	Time 0.239	Loss 2.3631	Acc@1 43.821	lr 1.0e-01	norm 1.00	cond 17.0	13.9	15.3	
+Test:		Time 0.050	Loss 2.5481	Acc@1 41.700	
+Best accuracy: 41.700
+Epoch: [21]	Time 0.241	Loss 2.3508	Acc@1 43.882	lr 1.0e-01	norm 1.00	cond 16.8	14.0	15.4	
+Test:		Time 0.052	Loss 2.7192	Acc@1 38.500	
+Epoch: [22]	Time 0.243	Loss 2.3318	Acc@1 44.424	lr 1.0e-01	norm 1.00	cond 16.9	13.9	15.3	
+Test:		Time 0.054	Loss 2.5764	Acc@1 40.270	
+Epoch: [23]	Time 0.242	Loss 2.3114	Acc@1 44.650	lr 1.0e-01	norm 1.00	cond 16.7	13.8	15.2	
+Test:		Time 0.053	Loss 2.4672	Acc@1 42.390	
+Best accuracy: 42.390
+Epoch: [24]	Time 0.240	Loss 2.2997	Acc@1 44.874	lr 1.0e-01	norm 1.00	cond 16.7	13.8	15.2	
+Test:		Time 0.052	Loss 2.4630	Acc@1 42.160	
+Epoch: [25]	Time 0.241	Loss 2.2888	Acc@1 45.178	lr 1.0e-01	norm 1.00	cond 16.6	13.7	15.1	
+Test:		Time 0.052	Loss 2.3326	Acc@1 44.530	
+Best accuracy: 44.530
+Epoch: [26]	Time 0.241	Loss 2.2793	Acc@1 45.427	lr 1.0e-01	norm 1.00	cond 16.6	13.7	15.1	
+Test:		Time 0.052	Loss 2.5440	Acc@1 41.430	
+Epoch: [27]	Time 0.240	Loss 2.2675	Acc@1 45.591	lr 1.0e-01	norm 1.00	cond 16.6	13.6	15.0	
+Test:		Time 0.054	Loss 2.4460	Acc@1 43.590	
+Epoch: [28]	Time 0.242	Loss 2.2589	Acc@1 45.658	lr 1.0e-01	norm 1.00	cond 16.5	13.5	14.9	
+Test:		Time 0.052	Loss 2.3467	Acc@1 45.410	
+Best accuracy: 45.410
+Epoch: [29]	Time 0.242	Loss 2.2552	Acc@1 45.817	lr 1.0e-01	norm 1.00	cond 16.4	13.5	14.9	
+Test:		Time 0.052	Loss 2.5149	Acc@1 41.730	
+Epoch: [30]	Time 0.242	Loss 1.8799	Acc@1 54.161	lr 1.0e-02	norm 1.00	cond 16.4	13.5	14.9	
+Test:		Time 0.052	Loss 1.9767	Acc@1 52.530	
+Best accuracy: 52.530
+Epoch: [31]	Time 0.241	Loss 1.7374	Acc@1 57.489	lr 1.0e-02	norm 1.00	cond 16.3	13.4	14.8	
+Test:		Time 0.051	Loss 1.9564	Acc@1 53.240	
+Best accuracy: 53.240
+Epoch: [32]	Time 0.240	Loss 1.6838	Acc@1 58.658	lr 1.0e-02	norm 1.00	cond 16.3	13.5	14.7	
+Test:		Time 0.054	Loss 1.9558	Acc@1 53.580	
+Best accuracy: 53.580
+Epoch: [33]	Time 0.238	Loss 1.6274	Acc@1 59.866	lr 1.0e-02	norm 1.00	cond 16.2	13.3	14.6	
+Test:		Time 0.052	Loss 1.9693	Acc@1 53.480	
+Epoch: [34]	Time 0.240	Loss 1.5758	Acc@1 60.942	lr 1.0e-02	norm 1.00	cond 16.0	13.3	14.6	
+Test:		Time 0.053	Loss 1.9550	Acc@1 53.990	
+Best accuracy: 53.990
+Epoch: [35]	Time 0.239	Loss 1.5521	Acc@1 61.468	lr 1.0e-02	norm 1.00	cond 15.9	13.2	14.5	
+Test:		Time 0.051	Loss 1.9656	Acc@1 54.040	
+Best accuracy: 54.040
+Epoch: [36]	Time 0.234	Loss 1.5120	Acc@1 62.548	lr 1.0e-02	norm 1.00	cond 16.0	13.2	14.5	
+Test:		Time 0.051	Loss 1.9719	Acc@1 54.250	
+Best accuracy: 54.250
+Epoch: [37]	Time 0.237	Loss 1.4855	Acc@1 62.891	lr 1.0e-02	norm 1.00	cond 15.9	13.2	14.5	
+Test:		Time 0.052	Loss 1.9757	Acc@1 54.410	
+Best accuracy: 54.410
+Epoch: [38]	Time 0.237	Loss 1.4564	Acc@1 63.744	lr 1.0e-02	norm 1.00	cond 15.8	13.1	14.4	
+Test:		Time 0.052	Loss 2.0225	Acc@1 54.060	
+Epoch: [39]	Time 0.241	Loss 1.4343	Acc@1 64.198	lr 1.0e-02	norm 1.00	cond 15.8	13.0	14.4	
+Test:		Time 0.054	Loss 2.0032	Acc@1 54.500	
+Best accuracy: 54.500
+Epoch: [40]	Time 0.238	Loss 1.4102	Acc@1 64.957	lr 1.0e-02	norm 1.00	cond 15.7	13.0	14.4	
+Test:		Time 0.050	Loss 2.0252	Acc@1 54.250	
+Epoch: [41]	Time 0.239	Loss 1.3838	Acc@1 65.190	lr 1.0e-02	norm 1.00	cond 15.6	12.9	14.3	
+Test:		Time 0.052	Loss 2.0478	Acc@1 54.580	
+Best accuracy: 54.580
+Epoch: [42]	Time 0.238	Loss 1.3521	Acc@1 66.088	lr 1.0e-02	norm 1.00	cond 15.6	12.9	14.3	
+Test:		Time 0.053	Loss 2.0371	Acc@1 54.550	
+Epoch: [43]	Time 0.236	Loss 1.3419	Acc@1 66.366	lr 1.0e-02	norm 1.00	cond 15.6	12.9	14.3	
+Test:		Time 0.051	Loss 2.1076	Acc@1 53.550	
+Epoch: [44]	Time 0.236	Loss 1.3215	Acc@1 66.738	lr 1.0e-02	norm 1.00	cond 15.6	12.8	14.2	
+Test:		Time 0.052	Loss 2.1011	Acc@1 54.600	
+Best accuracy: 54.600
+Epoch: [45]	Time 0.236	Loss 1.2942	Acc@1 67.520	lr 1.0e-02	norm 1.00	cond 15.4	12.8	14.2	
+Test:		Time 0.053	Loss 2.1128	Acc@1 54.020	
+Epoch: [46]	Time 0.235	Loss 1.2788	Acc@1 68.052	lr 1.0e-02	norm 1.00	cond 15.4	12.8	14.2	
+Test:		Time 0.052	Loss 2.1191	Acc@1 54.290	
+Epoch: [47]	Time 0.238	Loss 1.2590	Acc@1 68.248	lr 1.0e-02	norm 1.00	cond 15.4	12.8	14.2	
+Test:		Time 0.052	Loss 2.1530	Acc@1 53.370	
+Epoch: [48]	Time 0.236	Loss 1.2348	Acc@1 68.868	lr 1.0e-02	norm 1.00	cond 15.4	12.7	14.1	
+Test:		Time 0.052	Loss 2.1684	Acc@1 53.840	
+Epoch: [49]	Time 0.237	Loss 1.2182	Acc@1 69.455	lr 1.0e-02	norm 1.00	cond 15.4	12.8	14.2	
+Test:		Time 0.051	Loss 2.2019	Acc@1 53.560	
+Epoch: [50]	Time 0.230	Loss 1.2079	Acc@1 69.646	lr 1.0e-02	norm 1.00	cond 15.4	12.7	14.0	
+Test:		Time 0.051	Loss 2.2258	Acc@1 53.280	
+Epoch: [51]	Time 0.232	Loss 1.1929	Acc@1 69.949	lr 1.0e-02	norm 1.00	cond 15.3	12.6	14.1	
+Test:		Time 0.053	Loss 2.2136	Acc@1 53.560	
+Epoch: [52]	Time 0.237	Loss 1.1726	Acc@1 70.332	lr 1.0e-02	norm 1.00	cond 15.3	12.6	14.1	
+Test:		Time 0.050	Loss 2.3170	Acc@1 52.670	
+Epoch: [53]	Time 0.240	Loss 1.1677	Acc@1 70.568	lr 1.0e-02	norm 1.00	cond 15.2	12.6	14.1	
+Test:		Time 0.049	Loss 2.2272	Acc@1 53.870	
+Epoch: [54]	Time 0.238	Loss 1.1470	Acc@1 71.013	lr 1.0e-02	norm 1.00	cond 15.2	12.6	14.0	
+Test:		Time 0.051	Loss 2.3281	Acc@1 53.300	
+Epoch: [55]	Time 0.237	Loss 1.1361	Acc@1 71.267	lr 1.0e-02	norm 1.00	cond 15.2	12.6	14.0	
+Test:		Time 0.054	Loss 2.3399	Acc@1 52.620	
+Epoch: [56]	Time 0.238	Loss 1.1191	Acc@1 71.638	lr 1.0e-02	norm 1.00	cond 15.2	12.6	14.0	
+Test:		Time 0.051	Loss 2.3811	Acc@1 52.580	
+Epoch: [57]	Time 0.239	Loss 1.1230	Acc@1 71.679	lr 1.0e-02	norm 1.00	cond 15.1	12.5	13.9	
+Test:		Time 0.051	Loss 2.3703	Acc@1 53.110	
+Epoch: [58]	Time 0.238	Loss 1.0973	Acc@1 72.288	lr 1.0e-02	norm 1.00	cond 15.2	12.5	14.0	
+Test:		Time 0.052	Loss 2.3987	Acc@1 52.330	
+Epoch: [59]	Time 0.238	Loss 1.0903	Acc@1 72.362	lr 1.0e-02	norm 1.00	cond 15.1	12.5	13.9	
+Test:		Time 0.052	Loss 2.3641	Acc@1 53.070	
+Epoch: [60]	Time 0.239	Loss 0.9974	Acc@1 75.016	lr 1.0e-03	norm 1.00	cond 15.0	12.5	13.9	
+Test:		Time 0.053	Loss 2.2700	Acc@1 54.260	
+Epoch: [61]	Time 0.240	Loss 0.9670	Acc@1 76.069	lr 1.0e-03	norm 1.00	cond 15.1	12.4	13.9	
+Test:		Time 0.051	Loss 2.2726	Acc@1 54.250	
+Epoch: [62]	Time 0.239	Loss 0.9597	Acc@1 76.274	lr 1.0e-03	norm 1.00	cond 15.1	12.5	13.9	
+Test:		Time 0.054	Loss 2.2635	Acc@1 54.370	
+Epoch: [63]	Time 0.242	Loss 0.9401	Acc@1 76.779	lr 1.0e-03	norm 1.00	cond 15.1	12.5	13.9	
+Test:		Time 0.053	Loss 2.2589	Acc@1 54.460	
+Epoch: [64]	Time 0.239	Loss 0.9366	Acc@1 76.780	lr 1.0e-03	norm 1.00	cond 15.1	12.4	13.9	
+Test:		Time 0.053	Loss 2.2786	Acc@1 54.220	
+Epoch: [65]	Time 0.239	Loss 0.9244	Acc@1 77.148	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.9	
+Test:		Time 0.051	Loss 2.2691	Acc@1 54.390	
+Epoch: [66]	Time 0.238	Loss 0.9181	Acc@1 77.299	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.9	
+Test:		Time 0.053	Loss 2.2547	Acc@1 54.550	
+Epoch: [67]	Time 0.236	Loss 0.9135	Acc@1 77.497	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.053	Loss 2.2679	Acc@1 54.370	
+Epoch: [68]	Time 0.240	Loss 0.9115	Acc@1 77.598	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.9	
+Test:		Time 0.052	Loss 2.2697	Acc@1 54.250	
+Epoch: [69]	Time 0.237	Loss 0.9142	Acc@1 77.439	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.9	
+Test:		Time 0.054	Loss 2.2816	Acc@1 54.270	
+Epoch: [70]	Time 0.236	Loss 0.8978	Acc@1 77.916	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.052	Loss 2.2805	Acc@1 54.250	
+Epoch: [71]	Time 0.238	Loss 0.8932	Acc@1 77.864	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.051	Loss 2.2926	Acc@1 54.000	
+Epoch: [72]	Time 0.235	Loss 0.8861	Acc@1 78.096	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.9	
+Test:		Time 0.052	Loss 2.2672	Acc@1 54.570	
+Epoch: [73]	Time 0.237	Loss 0.8898	Acc@1 78.085	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.9	
+Test:		Time 0.052	Loss 2.2911	Acc@1 54.310	
+Epoch: [74]	Time 0.238	Loss 0.8790	Acc@1 78.408	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.9	
+Test:		Time 0.052	Loss 2.2934	Acc@1 54.070	
+Epoch: [75]	Time 0.239	Loss 0.8814	Acc@1 78.326	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.051	Loss 2.2846	Acc@1 54.310	
+Epoch: [76]	Time 0.239	Loss 0.8733	Acc@1 78.492	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.8	
+Test:		Time 0.053	Loss 2.3005	Acc@1 54.180	
+Epoch: [77]	Time 0.240	Loss 0.8839	Acc@1 78.257	lr 1.0e-03	norm 1.00	cond 15.0	12.3	13.8	
+Test:		Time 0.052	Loss 2.3053	Acc@1 54.250	
+Epoch: [78]	Time 0.241	Loss 0.8738	Acc@1 78.423	lr 1.0e-03	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.052	Loss 2.2929	Acc@1 54.420	
+Epoch: [79]	Time 0.237	Loss 0.8673	Acc@1 78.540	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.054	Loss 2.2926	Acc@1 54.270	
+Epoch: [80]	Time 0.239	Loss 0.8671	Acc@1 78.695	lr 1.0e-03	norm 1.00	cond 15.0	12.4	13.8	
+Test:		Time 0.052	Loss 2.2984	Acc@1 54.370	
+Epoch: [81]	Time 0.241	Loss 0.8646	Acc@1 78.662	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.053	Loss 2.2906	Acc@1 54.450	
+Epoch: [82]	Time 0.236	Loss 0.8568	Acc@1 78.959	lr 1.0e-03	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.053	Loss 2.2986	Acc@1 54.210	
+Epoch: [83]	Time 0.241	Loss 0.8584	Acc@1 78.939	lr 1.0e-03	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.054	Loss 2.3027	Acc@1 54.280	
+Epoch: [84]	Time 0.240	Loss 0.8542	Acc@1 79.075	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.055	Loss 2.3185	Acc@1 54.140	
+Epoch: [85]	Time 0.240	Loss 0.8519	Acc@1 79.088	lr 1.0e-03	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.052	Loss 2.3313	Acc@1 54.180	
+Epoch: [86]	Time 0.239	Loss 0.8488	Acc@1 79.042	lr 1.0e-03	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.052	Loss 2.3100	Acc@1 54.420	
+Epoch: [87]	Time 0.239	Loss 0.8448	Acc@1 79.194	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.051	Loss 2.3304	Acc@1 53.970	
+Epoch: [88]	Time 0.242	Loss 0.8399	Acc@1 79.289	lr 1.0e-03	norm 1.00	cond 14.8	12.2	13.7	
+Test:		Time 0.051	Loss 2.3215	Acc@1 54.190	
+Epoch: [89]	Time 0.239	Loss 0.8403	Acc@1 79.369	lr 1.0e-03	norm 1.00	cond 14.9	12.4	13.8	
+Test:		Time 0.052	Loss 2.3320	Acc@1 54.410	
+Epoch: [90]	Time 0.240	Loss 0.8427	Acc@1 79.304	lr 1.0e-04	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.053	Loss 2.3169	Acc@1 54.320	
+Epoch: [91]	Time 0.238	Loss 0.8350	Acc@1 79.425	lr 1.0e-04	norm 1.00	cond 14.8	12.3	13.8	
+Test:		Time 0.054	Loss 2.3245	Acc@1 54.140	
+Epoch: [92]	Time 0.237	Loss 0.8315	Acc@1 79.512	lr 1.0e-04	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.054	Loss 2.3291	Acc@1 54.120	
+Epoch: [93]	Time 0.235	Loss 0.8292	Acc@1 79.554	lr 1.0e-04	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.054	Loss 2.3332	Acc@1 54.120	
+Epoch: [94]	Time 0.236	Loss 0.8319	Acc@1 79.499	lr 1.0e-04	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.053	Loss 2.3397	Acc@1 54.160	
+Epoch: [95]	Time 0.240	Loss 0.8272	Acc@1 79.649	lr 1.0e-04	norm 1.00	cond 14.9	12.3	13.8	
+Test:		Time 0.051	Loss 2.3411	Acc@1 53.990	
+Epoch: [96]	Time 0.237	Loss 0.8255	Acc@1 79.656	lr 1.0e-04	norm 1.00	cond 14.8	12.2	13.7	
+Test:		Time 0.052	Loss 2.3151	Acc@1 54.280	
+Epoch: [97]	Time 0.236	Loss 0.8222	Acc@1 79.816	lr 1.0e-04	norm 1.00	cond 14.8	12.3	13.8	
+Test:		Time 0.051	Loss 2.3296	Acc@1 54.030	
+Epoch: [98]	Time 0.234	Loss 0.8247	Acc@1 79.749	lr 1.0e-04	norm 1.00	cond 14.8	12.3	13.8	
+Test:		Time 0.052	Loss 2.3274	Acc@1 54.080	
+Epoch: [99]	Time 0.234	Loss 0.8263	Acc@1 79.698	lr 1.0e-04	norm 1.00	cond 14.8	12.3	13.8	
+Test:		Time 0.051	Loss 2.3231	Acc@1 54.180	

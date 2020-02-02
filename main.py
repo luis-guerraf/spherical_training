@@ -341,8 +341,8 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         if i == 0:
             # Compute layer-wise condition number
             output = model(input)
-            nn_cond = [layer_cond(output, l) for l in layers[2:3]]
-            nn_cond = sum(nn_cond) / len(nn_cond)
+            nn_cond = [layer_cond(output, l) for l in [layers[2], layers[7], layers[12]]]
+            # nn_cond = sum(nn_cond) / len(nn_cond)
 
     # Network norm
     nn_norm = list(map(layer_norm, layers))
@@ -354,10 +354,10 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
           'Acc@1 {top1.avg:.3f}\t'
           'lr {lr:0.1e}\t'
           'norm {norm:0.2f}\t'
-          'cond {cond:0.1f}'.format(
+          'cond {cond[0]:0.1f}\t{cond[1]:0.1f}\t{cond[2]:0.1f}\t'.format(
            epoch, batch_time=batch_time,
            loss=CE_losses, top1=top1,
-           lr=optimizer.param_groups[0]['lr'], norm=nn_norm, cond=math.log2(nn_cond)))
+           lr=optimizer.param_groups[0]['lr'], norm=nn_norm, cond=nn_cond))
 
 
 def validate(val_loader, model, criterion, args):
@@ -566,7 +566,7 @@ def layer_cond(output, layer):
     eigenVals_mean = torch.Tensor([torch.mean(j) for j in eigenVals])
     cond = torch.mean(eigenVals_std / ((eigenVals_mean+1e-6) ** 2))
 
-    return cond
+    return math.log2(cond)
 
 
 if __name__ == '__main__':

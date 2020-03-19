@@ -20,6 +20,8 @@ import torchvision.datasets as datasets
 import models
 import math
 import copy
+from models.spectral_normalization import SpectralNorm
+
 
 model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
@@ -78,7 +80,7 @@ parser.add_argument('--project', action='store_true',
                     help='Project gradients onto tangent space')
 parser.add_argument('--retract', action='store_true',
                     help='Retract weights back onto sphere')
-parser.add_argument('--use-mhe', action='store_true',
+parser.add_argument('--mhe', action='store_true',
                     help='Project gradients onto tangent space')
 parser.add_argument('--mode', default='channelwise', choices=['channelwise', 'layerwise'],
                     help='Sphere per channel or per layer')
@@ -308,7 +310,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         CE_loss = criterion(output, target)
         loss = CE_loss
 
-        if args.use_mhe:
+        if args.mhe:
             mhe_loss = list(map(compute_mhe_loss, layers))
             mhe_loss = sum(mhe_loss)/len(mhe_loss)
             loss = loss + mhe_loss
@@ -340,24 +342,30 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         if i == 0:
             # Compute layer-wise condition number
-            output = model(input)
-            nn_cond = [layer_cond(output, l) for l in [layers[2], layers[7], layers[12]]]
+            # output = model(input)
+            # nn_cond = [layer_cond(output, l) for l in [layers[3], layers[8], layers[11]]]
             # nn_cond = sum(nn_cond) / len(nn_cond)
+            nn_cond = [0, 0, 0]
 
     # Network norm
-    nn_norm = list(map(layer_norm, layers))
-    nn_norm = sum(nn_norm) / len(nn_norm)
+    # nn_norm = list(map(layer_norm, layers))
+    nn_norm = list(map(layer_norm, [layers[3], layers[8], layers[11]]))
+    # nn_norm = sum(nn_norm) / len(nn_norm)
+
+    # Spec norm
+    nn_spec = [layers[3].sigma, layers[8].sigma, layers[11].sigma]
 
     print('Epoch: [{0}]\t'
           'Time {batch_time.avg:.3f}\t'
           'Loss {loss.avg:.4f}\t'
           'Acc@1 {top1.avg:.3f}\t'
           'lr {lr:0.1e}\t'
-          'norm {norm:0.2f}\t'
-          'cond {cond[0]:0.1f}\t{cond[1]:0.1f}\t{cond[2]:0.1f}\t'.format(
+          'norm {norm[0]:0.1f}\t{norm[1]:0.1f}\t{norm[2]:0.1f}\t'
+          'cond {cond[0]:0.1f}\t{cond[1]:0.1f}\t{cond[2]:0.1f}\t'
+          'spec {spec[0]:0.2f}\t{spec[1]:0.2f}\t{spec[2]:0.2f}'.format(
            epoch, batch_time=batch_time,
            loss=CE_losses, top1=top1,
-           lr=optimizer.param_groups[0]['lr'], norm=nn_norm, cond=nn_cond))
+           lr=optimizer.param_groups[0]['lr'], norm=nn_norm, cond=nn_cond, spec=nn_spec))
 
 
 def validate(val_loader, model, criterion, args):
@@ -462,6 +470,8 @@ def layers_list(layer):
             layers += layers_list(m)
         if isinstance(m, nn.Conv2d):
             layers += [m]
+        if isinstance(m, SpectralNorm):
+            layers += [m.module]
 
     return layers
 

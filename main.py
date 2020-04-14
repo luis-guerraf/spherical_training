@@ -48,7 +48,7 @@ parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                     metavar='LR', help='initial learning rate', dest='lr')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
-parser.add_argument('--wd', '--weight-decay', default=0, type=float,
+parser.add_argument('--wd', '--weight-decay', default=1e-4, type=float,
                     metavar='W', help='weight decay (default: 1e-4)',
                     dest='weight_decay')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
@@ -340,9 +340,10 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
         if i == 0:
             # Compute layer-wise condition number
-            output = model(input)
-            nn_cond = [layer_cond(output, l) for l in [layers[2], layers[7], layers[12]]]
+            # output = model(input)
+            # nn_cond = [layer_cond(output, l) for l in [layers[2], layers[7], layers[12]]]
             # nn_cond = sum(nn_cond) / len(nn_cond)
+            nn_cond = [0, 0, 0]
 
     # Network norm
     nn_norm = list(map(layer_norm, layers))
@@ -457,10 +458,9 @@ def layers_list(layer):
     layers = []
     for m_name in layer.__dict__['_modules']:
         m = layer.__dict__['_modules'][m_name]
-        if (isinstance(m, nn.Sequential)) or \
-                (m.__class__.__name__ == 'BasicBlock') or (m.__class__.__name__ == 'Bottleneck'):
+        if isinstance(m, nn.Module):
             layers += layers_list(m)
-        if isinstance(m, nn.Conv2d):
+        if isinstance(m, nn.Conv2d) or isinstance(m, nn.Linear):
             layers += [m]
 
     return layers
@@ -525,7 +525,10 @@ def init_sphere(layer):
     if args.mode == 'channelwise':
         l = layer.weight.view(layer.weight.shape[0], -1)
         norm = torch.norm(l, p=2, dim=1)
-        layer.weight.data /= norm.unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+        if isinstance(layer, nn.Conv2d):
+            layer.weight.data /= norm.unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+        elif isinstance(layer, nn.Linear):
+            layer.weight.data /= norm.unsqueeze(-1)
     elif args.mode == 'layerwise':
         norm = torch.norm(layer.weight, p='fro')
         layer.weight.data = layer.weight.data / norm

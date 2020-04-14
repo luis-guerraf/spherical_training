@@ -106,8 +106,8 @@ class sphereAdam(Optimizer):
 
                 ### Modified from original ###
                 d_p = exp_avg/denom
-                # If conv layer
-                if len(p.data.shape) == 4 and project_onto_tangent:
+                # If conv or linear layer
+                if (len(p.data.shape) == 4 or len(p.data.shape) == 2) and project_onto_tangent:
                     if projection_mode == 'channelwise':
                         project_onto_tangent_channelwise(p, d_p)
                     elif projection_mode == 'layerwise':

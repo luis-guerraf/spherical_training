@@ -102,8 +102,9 @@ class sphereSGD(Optimizer):
                     else:
                         d_p = buf
 
-                # If conv layer
-                if len(p.data.shape) == 4 and project_onto_tangent:
+                ### Modified from original ###
+                # If conv or linear layer
+                if (len(p.data.shape) == 4 or len(p.data.shape) == 2) and project_onto_tangent:
                     if projection_mode == 'channelwise':
                         project_onto_tangent_channelwise(p, d_p)
                     elif projection_mode == 'layerwise':
